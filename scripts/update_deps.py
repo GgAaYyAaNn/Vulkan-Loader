@@ -322,6 +322,7 @@ class GoodRepo(object):
         'json':  A fully populated JSON object describing the repo.
         'args':  Results from ArgumentParser
         """
+        print(json)
         self._json = json
         self._args = args
         # Required JSON elements
