@@ -376,7 +376,10 @@ class GoodRepo(object):
         for retry in range(retries):
             make_or_exist_dirs(self.repo_dir)
             try:
-                command_output(['git', 'clone', self.url, '.'], self.repo_dir)
+                command = ['git', 'clone', self.url, '.']
+                if 'Vulkan-Headers.git' in self.url:
+                    command += ['--depth', '1', '--branch', self.commit]
+                command_output(command, self.repo_dir)
                 # If we get here, we didn't raise an error
                 return
             except RuntimeError as e:
